@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services – Stackly Gov Services</title>
+<meta name="description" content="Browse certificates, identity, land, education, health and utility services you can apply for online.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF5E6;--cream2:#F3EAD0;--green:#0F5C4D;--navy:#14213D;--saffron:#F28C28;--ink:#2B2B2B;--white:#fff;--r:20px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;line-height:1.7}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--navy);line-height:1.2}
+.wrap{max-width:1800px;margin:auto;padding:0 5.5%}
+section{padding:90px 0}
+.tag{display:inline-block;background:var(--cream2);color:var(--green);padding:6px 16px;border-radius:50px;font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:14px}
+.title{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
+.sub{max-width:620px;color:#5b5b5b}
+.center{text-align:center}.center .sub{margin:auto}
+.btn{display:inline-block;padding:14px 30px;border-radius:50px;font-weight:600;transition:.3s;cursor:pointer;border:2px solid transparent}
+.btn-p{background:var(--saffron);color:#fff;box-shadow:0 8px 20px rgba(242,140,40,.35)}
+.btn-p:hover{transform:translateY(-4px);background:#d9761a}
+.btn-o{border-color:var(--green);color:var(--green)}
+.btn-o:hover{background:var(--green);color:#fff;transform:translateY(-4px)}
+/* header */
+header{position:sticky;top:0;z-index:100;background:var(--navy);box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo img{height:52px;width:auto}
+.menu{display:flex;gap:28px;align-items:center;list-style:none}
+.menu a{color:#fff;font-weight:500;position:relative;padding:6px 0}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--saffron);transition:.3s}
+.menu a:hover::after{width:100%}
+.menu a.track{color:var(--saffron);font-weight:600}
+.login{background:var(--saffron);color:#fff;padding:10px 26px;border-radius:50px;font-weight:600;transition:.3s}
+.login:hover{background:var(--cream);color:var(--navy);transform:translateY(-3px)}
+.burger{display:none;background:none;border:0;cursor:pointer;width:34px;height:26px;flex-direction:column;justify-content:space-between}
+.burger span{height:3px;background:#fff;border-radius:3px}
+.drawer-head,.m-login{display:none}
+/* hero */
+.hero{padding:70px 0 90px;background:radial-gradient(circle at 85% 20%,#f7dfae 0,transparent 40%),var(--cream);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(34px,5.2vw,60px);margin-bottom:18px}
+.hero h1 .w{display:inline-block;margin-right:.28em;opacity:0;transform:translateY(40px);animation:up .7s forwards}
+.type{color:var(--saffron);border-right:3px solid var(--saffron);padding-right:4px;animation:blink .8s infinite}
+.hero p{max-width:520px;margin-bottom:28px}
+.hero .btns{display:flex;gap:14px;flex-wrap:wrap}
+.collage{position:relative;height:520px}
+.collage img{position:absolute;object-fit:cover;border-radius:var(--r);box-shadow:0 20px 40px rgba(20,33,61,.2)}
+.c1{width:62%;height:68%;top:0;right:0;animation:float 6s ease-in-out infinite}
+.c2{width:50%;height:44%;bottom:0;left:0;border:6px solid var(--cream);animation:float 7s ease-in-out infinite reverse}
+.c3{width:34%;height:30%;bottom:6%;right:4%;border:6px solid var(--cream);animation:float 5s ease-in-out infinite}
+.badge{position:absolute;top:44%;left:2%;background:#fff;padding:12px 18px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.12);font-weight:600;font-size:14px;animation:float 4s ease-in-out infinite;z-index:3}
+.badge b{color:var(--green);font-size:20px;display:block}
+/* marquee */
+.marq{background:var(--navy);color:var(--cream);overflow:hidden;padding:14px 0;white-space:nowrap}
+.marq div{display:inline-block;animation:scroll 28s linear infinite}
+.marq span{margin:0 34px;font-weight:500}
+.marq span::before{content:"✦ ";color:var(--saffron)}
+/* stats */
+.stats{padding:0;margin-top:-1px;background:var(--green);color:#fff}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:46px 5.5%;text-align:center}
+.stats h3{color:#fff;font-size:40px}
+/* services */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:46px}
+.card{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06);transition:.4s}
+.card:hover{transform:translateY(-10px);box-shadow:0 22px 45px rgba(15,92,77,.18)}
+.card .im{height:190px;overflow:hidden}
+.card .im img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.card:hover .im img{transform:scale(1.12)}
+.card .b{padding:24px}
+.card h3{font-size:21px;margin-bottom:8px}
+.card .more{color:var(--saffron);font-weight:600;display:inline-block;margin-top:10px;transition:.3s}
+.card:hover .more{transform:translateX(8px)}
+.ico{width:52px;height:52px;border-radius:14px;background:var(--cream2);display:grid;place-items:center;font-size:24px;margin-top:-50px;margin-bottom:12px;position:relative;box-shadow:0 6px 14px rgba(0,0,0,.1)}
+/* about */
+.alt{background:var(--cream2)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.imgs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.imgs img{border-radius:var(--r);object-fit:cover;width:100%;height:260px}
+.imgs img:nth-child(2){margin-top:40px}
+.list{list-style:none;margin:20px 0 28px}
+.list li{padding-left:34px;position:relative;margin-bottom:10px}
+.list li::before{content:"✓";position:absolute;left:0;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:13px;display:grid;place-items:center;top:4px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:46px}
+.step{background:#fff;padding:30px 22px;border-radius:var(--r);text-align:center;border-top:5px solid var(--saffron);transition:.3s}
+.step:hover{transform:translateY(-8px)}
+.step em{font-style:normal;font-family:'Playfair Display';font-size:44px;color:var(--green);display:block}
+/* dark band */
+.band{background:linear-gradient(rgba(20,33,61,.88),rgba(20,33,61,.88)),url("./assets/home\ bg.webp") center/cover fixed;color:#fff;text-align:center}
+.band h2{color:#fff}.band .sub{color:#e6e6e6}
+.band .btn{margin-top:26px}
+/* testimonials */
+.t{background:#fff;padding:28px;border-radius:var(--r);box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.t .who{display:flex;align-items:center;gap:14px;margin-top:18px}
+.t .who img{width:54px;height:54px;border-radius:50%;object-fit:cover}
+.stars{color:var(--saffron);letter-spacing:3px}
+/* blog */
+.meta{font-size:13px;color:var(--green);font-weight:600}
+/* contact */
+.cbox{background:var(--green);color:#fff;border-radius:30px;padding:50px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.cbox h2{color:#fff}
+.cbox form{display:grid;gap:12px}
+.cbox input,.cbox textarea{padding:14px 18px;border-radius:12px;border:0;font:inherit;background:var(--cream)}
+/* footer */
+footer{background:var(--navy);color:#d9d9d9;padding:70px 0 0}
+.fg{display:grid;grid-template-columns:1.4fr .8fr .9fr 1.2fr;gap:40px;padding-bottom:50px}
+footer h4{color:#fff;font-size:18px;margin-bottom:18px;font-family:'Playfair Display'}
+footer ul{list-style:none}
+footer li{margin-bottom:10px}
+footer li a:hover{color:var(--saffron);padding-left:6px}
+footer li a{transition:.3s}
+.flogo{height:56px;width:auto;margin-bottom:16px}
+.soc{display:flex;gap:12px;margin-top:20px}
+.soc a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;transition:.3s}
+.soc a:hover{background:var(--saffron);transform:translateY(-5px) rotate(8deg)}
+.soc svg{width:20px;height:20px;fill:#fff}
+.copy{border-top:1px solid rgba(255,255,255,.12);text-align:center;padding:20px;font-size:14px}
+/* animations */
+.rv{opacity:0;transform:translateY(50px);transition:1s cubic-bezier(.2,.8,.2,1)}
+.rv.show{opacity:1;transform:none}
+.rl{opacity:0;transform:translateX(-60px);transition:1s}.rr{opacity:0;transform:translateX(60px);transition:1s}
+.rl.show,.rr.show{opacity:1;transform:none}
+@keyframes up{to{opacity:1;transform:none}}
+@keyframes blink{50%{border-color:transparent}}
+@keyframes float{50%{transform:translateY(-16px)}}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* responsive */
+@media(max-width:960px){
+.burger{display:flex}
+.nav>.login{display:none}
+.menu{position:fixed;top:0;right:-100%;width:80%;max-width:340px;height:100vh;height:100dvh;overflow-y:auto;background:var(--cream);flex-direction:column;align-items:flex-start;padding:24px 28px;gap:20px;transition:.45s;box-shadow:-10px 0 30px rgba(0,0,0,.2);z-index:200}
+.menu.open{right:0}
+.menu a{color:var(--navy)}.menu a.track{color:var(--green)}.menu .m-login a{color:#fff}.menu .m-login a:hover{color:var(--navy)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:10px}
+.drawer-head img{height:44px}
+.exit{background:var(--saffron);color:#fff;border:0;width:38px;height:38px;border-radius:50%;font-size:20px;cursor:pointer;transition:.3s}
+.exit:hover{transform:rotate(90deg)}
+.m-login{display:block;width:100%}
+.m-login .login{display:block;text-align:center}
+.menu li{opacity:0;transform:translateX(30px)}
+.menu.open li{animation:up .5s forwards;transform:translateX(30px)}
+.menu.open li:nth-child(2){animation-delay:.1s}.menu.open li:nth-child(3){animation-delay:.15s}.menu.open li:nth-child(4){animation-delay:.2s}.menu.open li:nth-child(5){animation-delay:.25s}.menu.open li:nth-child(6){animation-delay:.3s}.menu.open li:nth-child(7){animation-delay:.35s}.menu.open li:nth-child(8){animation-delay:.4s}
+.hero .wrap,.two,.cbox{grid-template-columns:1fr}
+.collage{height:400px}
+.grid3,.steps,.stats .wrap{grid-template-columns:1fr 1fr}
+.fg{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+section{padding:60px 0}
+.grid3,.steps{grid-template-columns:1fr}
+.fg{grid-template-columns:1fr}
+.cbox{padding:30px 22px}
+.collage{height:340px}
+.imgs img{height:190px}
+}
+
+/* ===== shared additions ===== */
+:focus-visible{outline:3px solid var(--saffron);outline-offset:3px;border-radius:6px}
+.menu a.active{color:var(--saffron)}.menu a.active::after{width:100%}
+.phero{padding:72px 0 64px;background:radial-gradient(circle at 90% 10%,#f7dfae 0,transparent 45%),var(--cream2);text-align:center}
+.phero h1{font-size:clamp(32px,5vw,54px);margin-bottom:12px}.phero .sub{margin:auto}
+.crumb{font-size:14px;color:var(--green);font-weight:500;margin-bottom:14px}.crumb a:hover{color:var(--saffron)}.crumb i{font-style:normal;margin:0 8px;opacity:.5}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:46px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:46px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.chip{border:2px solid var(--green);background:transparent;color:var(--green);padding:8px 20px;border-radius:50px;font:600 14px Poppins,sans-serif;cursor:pointer;transition:.3s}
+.chip.on,.chip:hover{background:var(--green);color:#fff}
+.hide{display:none!important}
+.svc{background:#fff;border-radius:var(--r);padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.06);transition:.4s;display:flex;flex-direction:column}
+.svc:hover{transform:translateY(-8px);box-shadow:0 22px 45px rgba(15,92,77,.18)}
+.svc .ico{margin:0 0 16px}.svc h3{font-size:20px;margin-bottom:8px}.svc p{flex:1;font-size:15px}
+.fee{display:flex;gap:8px 18px;flex-wrap:wrap;font-size:13px;color:var(--green);font-weight:600;margin:14px 0}
+.svc .btn{padding:10px 22px;text-align:center;font-size:15px}
+.val{background:#fff;padding:30px;border-radius:var(--r);box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.val .ico{margin:0 0 14px}.val h3{font-size:20px;margin-bottom:6px}
+.tl{position:relative;max-width:820px;margin:46px auto 0;padding-left:34px;border-left:3px solid var(--saffron)}
+.tl>div{position:relative;margin-bottom:34px}
+.tl>div::before{content:"";position:absolute;left:-45px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--green);border:3px solid var(--cream2)}
+.tl b{font-family:'Playfair Display',serif;font-size:22px;color:var(--navy);display:block}
+.person{text-align:center;background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.person img{width:100%;aspect-ratio:1/1;object-fit:cover}.person div{padding:18px}.person small{color:var(--green);font-weight:600}
+.acc{max-width:860px;margin:40px auto 0}
+.acc details{background:#fff;border-radius:14px;margin-bottom:12px;padding:0 24px;box-shadow:0 6px 18px rgba(0,0,0,.05)}
+.acc summary{cursor:pointer;padding:18px 0;font-weight:600;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";color:var(--saffron);font-size:24px;line-height:1}
+.acc details[open] summary::after{content:"\2212"}.acc details p{padding-bottom:18px}
+.feat{display:grid;grid-template-columns:1.1fr 1fr;background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+.feat img{width:100%;height:100%;min-height:320px;object-fit:cover}.feat .b{padding:44px;align-self:center}.feat h2{font-size:clamp(24px,3vw,34px);margin:8px 0 12px}
+.full{display:none;margin-top:10px;font-size:15px}.open-post .full{display:block}
+button.more{background:none;border:0;font:inherit;cursor:pointer}
+.news{background:var(--green);color:#fff;border-radius:30px;padding:46px;text-align:center}.news h2{color:#fff}
+.news form{display:flex;gap:12px;max-width:520px;margin:22px auto 0}.news input{flex:1;min-width:0;padding:14px 20px;border-radius:50px;border:0;font:inherit}
+.info{background:#fff;padding:28px;border-radius:var(--r);box-shadow:0 10px 30px rgba(0,0,0,.06)}.info .ico{margin:0 0 14px}.info h3{font-size:19px;margin-bottom:6px}.info a:hover{color:var(--saffron)}
+.fm{display:grid;gap:14px}.fm .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fm label{font-size:14px;font-weight:600;color:var(--navy);display:block;margin-bottom:4px}
+.fm input,.fm select,.fm textarea{width:100%;padding:13px 16px;border-radius:12px;border:2px solid #e3d9bd;font:inherit;background:#fff;color:var(--ink)}
+.fm input:focus,.fm select:focus,.fm textarea:focus{border-color:var(--green);outline:0}
+.panel{background:#fff;border-radius:30px;padding:44px;box-shadow:0 14px 40px rgba(0,0,0,.08)}
+.msg{padding:14px 18px;border-radius:12px;font-weight:500;margin-top:14px}.msg.ok{background:#e3f3ec;color:var(--green)}.msg.err{background:#fdeaea;color:#a12626}
+.map{border-radius:30px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08);margin-top:46px;aspect-ratio:16/6}.map iframe{width:100%;height:100%;border:0}
+.trk{max-width:860px;margin:auto}
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:34px 0 24px;list-style:none;counter-reset:s}
+.pipe li{text-align:center;font-size:14px;font-weight:500;position:relative;padding-top:50px;color:#8a8a8a}
+.pipe li::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:50%;transform:translateX(-50%);width:38px;height:38px;border-radius:50%;background:#e8e0c6;color:#777;display:grid;place-items:center;font-weight:700;z-index:2}
+.pipe li::after{content:"";position:absolute;top:18px;left:calc(50% + 24px);width:calc(100% - 38px);height:3px;background:#e8e0c6}
+.pipe li:last-child::after{display:none}
+.pipe li.done{color:var(--navy)}.pipe li.done::before{background:var(--green);color:#fff}.pipe li.done::after{background:var(--green)}
+.pipe li.now::before{background:var(--saffron);color:#fff;box-shadow:0 0 0 6px rgba(242,140,40,.25)}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}.kv div{background:var(--cream);padding:14px 18px;border-radius:12px}.kv small{display:block;color:var(--green);font-weight:600}
+.auth{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 78px);min-height:calc(100dvh - 78px)}
+.auth .side{background:linear-gradient(rgba(20,33,61,.9),rgba(20,33,61,.9)),url("./assets/home\ bg.webp") center/cover;color:#fff;padding:70px 8%;display:flex;flex-direction:column;justify-content:center}
+.auth .side h1{color:#fff;font-size:clamp(30px,3.6vw,46px);margin-bottom:16px}.auth .side .list li::before{background:var(--saffron)}
+.auth .form{padding:60px 8%;display:flex;flex-direction:column;justify-content:center;max-width:620px;width:100%;margin:auto}
+.tabs{display:flex;background:var(--cream2);border-radius:50px;padding:5px;margin:20px 0 26px}.tabs button{flex:1;border:0;background:none;padding:10px;border-radius:50px;font:600 15px Poppins,sans-serif;cursor:pointer;color:var(--navy)}.tabs button.on{background:var(--green);color:#fff}
+.sm{font-size:14px;color:#5b5b5b;margin-top:16px;text-align:center}.sm a{color:var(--green);font-weight:600}
+@media(max-width:1200px){.grid4{grid-template-columns:repeat(2,1fr)}.fg{grid-template-columns:1fr 1fr}.menu{gap:20px}.feat .b{padding:32px}}
+@media(max-width:960px){
+.menu a.active{color:var(--green)}.band{background-attachment:scroll}.phero{padding:56px 0 48px}
+.grid2,.feat,.auth{grid-template-columns:1fr}.feat img{min-height:240px;max-height:320px}
+.map{aspect-ratio:4/3}.auth .side{padding:50px 6%}.auth .form{padding:44px 6%}.auth{min-height:0}
+.panel{padding:32px}.kv{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+.grid4{grid-template-columns:1fr}.fm .row{grid-template-columns:1fr}.news{padding:34px 22px}.news form{flex-direction:column}
+.feat .b{padding:24px}.panel{padding:24px 18px;border-radius:22px}.kv{grid-template-columns:1fr}.logo img{height:44px}
+.pipe{grid-template-columns:1fr;gap:0;margin-left:6px}
+.pipe li{text-align:left;padding:8px 0 22px 56px;min-height:60px}.pipe li::before{left:0;transform:none;top:0}
+.pipe li::after{top:38px;left:18px;width:3px;height:calc(100% - 34px)}
+.chip{padding:7px 14px;font-size:13px}.btn{padding:12px 24px}
+}
+@media(max-width:400px){.wrap{padding:0 4.5%}.title{font-size:26px}.hero .btns .btn{width:100%;text-align:center}.stats h3{font-size:32px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.rl,.rr,.hero h1 .w,.menu li{opacity:1!important;transform:none!important}.marq div{animation:none}}
+
+
+/* ===== hero backgrounds ===== */
+.hero{background:radial-gradient(circle at 85% 20%,rgba(247,223,174,.75) 0,transparent 42%),linear-gradient(rgba(251,245,230,.9),rgba(251,245,230,.8)),var(--bg,none) center/cover no-repeat,var(--cream)}
+.phero{position:relative;background:linear-gradient(rgba(20,33,61,.84),rgba(15,92,77,.72)),var(--bg,none) center/cover no-repeat,var(--navy);color:#fff}
+.phero h1{color:#fff}.phero .sub{color:#e9e9e9}.phero .crumb,.phero .crumb a{color:var(--cream)}.phero .crumb a:hover{color:var(--saffron)}
+.phero .wrap{animation:heroIn 1s .1s both cubic-bezier(.2,.8,.2,1)}
+@keyframes heroIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+/* ===== global transitions (low specificity: component-specific ones still win) ===== */
+*,*::before,*::after{transition-property:color,background-color,border-color,box-shadow,transform,opacity,filter,padding,margin,width,height;transition-duration:.35s;transition-timing-function:ease}
+a,p,h1,h2,h3,h4,li,small,b,span,summary,label,input,select,textarea,button{transition-duration:.35s}
+.card,.svc,.val,.info,.person,.step,.t,.panel,.feat,.map,.acc details,.news,.cbox,.tl>div,.stats .wrap>div{transition:transform .4s ease,box-shadow .4s ease,background-color .4s ease,border-color .4s ease,opacity .4s ease}
+.card:hover,.val:hover,.info:hover,.person:hover,.t:hover,.acc details:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(15,92,77,.14)}
+.person img,.feat img{transition:transform .6s ease}.person:hover img,.feat:hover img{transform:scale(1.06)}
+.person,.feat{overflow:hidden}
+h1:hover,h2:hover,h3:hover{color:var(--green)}.phero h1:hover,.band h2:hover,.cbox h2:hover,.news h2:hover,.auth .side h1:hover,.stats h3:hover,footer h4:hover{color:#fff}
+.acc details{transition:box-shadow .4s ease,background-color .4s ease,transform .4s ease}.acc details[open]{background:#fffaf0}
+.menu li,.list li{transition:transform .3s ease,color .3s ease}.list li:hover{transform:translateX(6px)}
+.msg{animation:heroIn .5s both}
+@media(hover:none){.card:hover,.val:hover,.info:hover,.person:hover,.t:hover,.acc details:hover{transform:none;box-shadow:inherit}}
+
+/* ===== fixes: centered band paragraph + aligned testimonial avatars ===== */
+.band .sub{margin-left:auto;margin-right:auto;text-align:center}
+.band .wrap{display:flex;flex-direction:column;align-items:center}
+.band .title{text-align:center}
+.grid3>.t{display:flex;flex-direction:column}
+.t .who{margin-top:auto;padding-top:18px}
+.t .who>div{line-height:1.45}
+.t>p{margin-bottom:0}
+
+/* ===== mobile alignment fixes ===== */
+html{max-width:100%}body{max-width:100%}
+/* sticky header fix: overflow on <html> made <body> a scroll container, which breaks position:sticky; body alone propagates to the viewport */
+header{position:fixed;top:0;left:0;right:0;width:100%;z-index:1000}
+body{padding-top:78px;overflow-x:clip}
+html{overflow-x:clip}
+/* trimmed hero top spacing */
+.hero{padding:44px 0 80px}
+@media(max-width:960px){.hero{padding:22px 0 60px}}
+/* footer legal links */
+.copy{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 24px;max-width:1800px;margin:0 auto;padding:20px 5.5%;text-align:left}
+.copy .legal{display:flex;gap:22px;margin-left:auto}
+.copy .legal a{color:#b9bfd4;transition:color .3s}
+.copy .legal a:hover{color:var(--saffron)}
+@media(max-width:600px){.copy{flex-direction:column;align-items:flex-start;text-align:left}.copy .legal{margin-left:0}}
+img,svg,video{max-width:100%}
+@media(max-width:960px){
+.menu{right:0;transform:translateX(110%);visibility:hidden;transition:transform .45s,visibility 0s .45s}
+.menu.open{transform:none;visibility:visible;transition:transform .45s,visibility 0s}
+}
+
+/* grid children may shrink below their content width (fixes clipped / off-centre columns) */
+.two>*,.cbox>*,.hero .wrap>*,.grid2>*,.grid3>*,.grid4>*,.fg>*,.steps>*,.row>*,.fm>*,.stats .wrap>*{min-width:0}
+input,select,textarea{max-width:100%;min-width:0}
+@media(max-width:600px){
+.fg{grid-template-columns:1fr!important;gap:28px}
+.grid2,.grid4{grid-template-columns:1fr!important}
+.fm .row{grid-template-columns:1fr!important}
+.news form,.nl{flex-direction:column;align-items:stretch}
+.news form input,.news form button,.nl input,.nl button{width:100%}
+.wrap{width:min(92%,1200px)}
+}
+
+/* filter chips: even 2-column grid on mobile */
+@media(max-width:600px){
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.chips .chip{width:100%;padding:10px 8px;font-size:13.5px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chips .chip:first-child{grid-column:1/-1}
+}
+</style>
+<style>
+/* Stackly preloader (shared by all pages) */
+#preloader{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;background:radial-gradient(circle at 50% 40%,#1d2f55 0,#14213D 60%);color:#FBF5E6;font-family:Poppins,sans-serif;line-height:1.7;transition:opacity .6s ease,visibility 0s .6s}
+#preloader.done{opacity:0;visibility:hidden;pointer-events:none}
+html.is-loading,html.is-loading body{overflow:hidden}
+#preloader *{box-sizing:border-box;margin:0;padding:0}
+.pl-chakra{position:relative;width:150px;height:150px;display:grid;place-items:center}
+.pl-chakra svg{position:absolute;inset:0;width:100%;height:100%}
+.pl-spin{transform-origin:50% 50%;animation:plspin 6s linear infinite}
+.pl-ring{fill:none;stroke:#F28C28;stroke-width:3;stroke-linecap:round;stroke-dasharray:90 190;transform-origin:50% 50%;animation:plspin 1.4s cubic-bezier(.6,.1,.4,.9) infinite}
+.pl-brand{text-align:center}
+.pl-brand h2{font-family:'Playfair Display',serif;font-size:clamp(20px,3.4vw,28px);color:#fff;letter-spacing:.5px;line-height:1.2}
+.pl-brand p{font-size:13px;letter-spacing:2px;color:#F28C28;font-weight:600;margin-top:4px;text-transform:uppercase}
+.pl-bar{width:min(260px,70vw);height:5px;border-radius:5px;background:rgba(255,255,255,.14);overflow:hidden}
+.pl-bar i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,#F28C28,#ffb865);transition:width .35s ease}
+.pl-pct{font-size:13px;font-weight:500;color:#cfd5e6;margin-top:-14px;font-variant-numeric:tabular-nums}
+@keyframes plspin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.pl-spin,.pl-ring{animation:none!important}}
+</style>
+</head>
+<body>
+<script>
+/* Stackly preloader (shared by all pages). Include as the first element inside <body>. */
+(function () {
+  "use strict";
+  var html = document.documentElement;
+  html.classList.add("is-loading");
+  document.body.insertAdjacentHTML("afterbegin", '<div id="preloader" role="status" aria-live="polite" aria-label="Loading Stackly Gov Services"><div class="pl-chakra"><svg viewBox="0 0 150 150" aria-hidden="true"><g class="pl-spin" stroke="rgba(255,255,255,.35)" stroke-width="1.6" fill="none"><circle cx="75" cy="75" r="66" stroke-width="2"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(0 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(15 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(30 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(45 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(60 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(75 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(90 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(105 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(120 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(135 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(150 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(165 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(180 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(195 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(210 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(225 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(240 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(255 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(270 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(285 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(300 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(315 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(330 75 75)"/><line x1="75" y1="75" x2="75" y2="14" transform="rotate(345 75 75)"/></g><circle class="pl-ring" cx="75" cy="75" r="70"/></svg></div><div class="pl-brand"><h2>Stackly Gov Services</h2><p>Citizen Services Made Simple</p></div><div class="pl-bar"><i id="plBar"></i></div><div class="pl-pct" id="plPct">0%</div></div>');
+  var pre = document.getElementById("preloader"),
+      bar = document.getElementById("plBar"),
+      pct = document.getElementById("plPct");
+  var start = Date.now(), MIN = 1200, MAX = 6000, val = 0, finished = false;
+  function set(v) { val = Math.max(val, Math.min(v, 100)); bar.style.width = val + "%"; pct.textContent = Math.round(val) + "%"; }
+  // simulated progress that eases toward 90% until the page has really loaded
+  var t = setInterval(function () { if (val < 90) set(val + (90 - val) * 0.08 + 0.4); }, 120);
+  function finish() {
+    if (finished) return; finished = true; clearInterval(t);
+    setTimeout(function () {
+      set(100);
+      setTimeout(function () {
+        pre.classList.add("done");
+        html.classList.remove("is-loading");
+        setTimeout(function () { if (pre.parentNode) pre.parentNode.removeChild(pre); }, 800);
+      }, 300);
+    }, Math.max(0, MIN - (Date.now() - start)));
+  }
+  if (document.readyState === "complete") finish(); else window.addEventListener("load", finish);
+  setTimeout(finish, MAX); // safety net if an asset hangs
+})();
+</script>
+<header>
+<div class="wrap nav">
+  <a href="index.html" class="logo"><img src="stackly-logo.webp" alt="Stackly logo"></a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="menu" id="menu">
+    <li class="drawer-head"><img src="stackly-logo-dark.webp" alt="Stackly"><button class="exit" id="exit" aria-label="Close menu">✕</button></li>
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="blogs.html">Blogs</a></li><li><a href="contact.html">Contact</a></li><li><a href="track.html" class="track">Track Application</a></li>
+    <li class="m-login"><a href="login.html" class="login">Login</a></li>
+  </ul>
+  <a href="login.html" class="login">Login</a>
+</div>
+</header>
+<section class="phero" style="--bg:url('./assets/bg.webp')"><div class="wrap"><div class="crumb"><a href="index.html">Home</a><i>/</i>Services</div><h1>Our Services</h1><p class="sub">Over 150 government services in one place. Pick a category to see what you can apply for.</p></div></section><section><div class="wrap"><div class="chips" role="group" aria-label="Filter services"><button class="chip on" data-filter="all">All</button><button class="chip" data-filter="cert">Certificates</button><button class="chip" data-filter="id">Identity & Licences</button><button class="chip" data-filter="land">Land & Property</button><button class="chip" data-filter="edu">Education</button><button class="chip" data-filter="health">Health & Pension</button><button class="chip" data-filter="util">Utility Bills</button></div>
+<p class="center" id="count" style="margin-top:22px;color:var(--green);font-weight:600"></p>
+<div class="grid3" id="svcs" style="margin-top:26px"><article class="svc" data-cat="cert"><div class="ico">📜</div><h3>Birth Certificate</h3><p>Register a birth or request a certified copy for school, passport or insurance use.</p>
+  <div class="fee"><span>⏱ 3–5 days</span><span>₹ Fee: ₹60</span></div><a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="cert"><div class="ico">📜</div>
+    <h3>Community Certificate</h3><p>Proof of community for admissions, jobs and reservation benefits.</p><div class="fee"><span>⏱ 5–7 days</span><span>₹ Fee: ₹60</span></div>
+    <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="cert"><div class="ico">📜</div><h3>Income Certificate</h3><p>Annual income proof needed for scholarships and welfare schemes.</p>
+      <div class="fee"><span>⏱ 5–7 days</span><span>₹ Fee: ₹60</span></div>
+      <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="cert"><div class="ico">📜</div>
+        <h3>Nativity Certificate</h3><p>Confirms your place of residence for education and employment.</p>
+        <div class="fee"><span>⏱ 5–7 days</span><span>₹ Fee: ₹60</span></div>
+        <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="id"><div class="ico">🪪</div><h3>Voter ID Update</h3><p>Correct your name, address or photo on the electoral roll.</p>
+          <div class="fee"><span>⏱ 7–10 days</span><span>₹ Fee: Free</span></div>
+          <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="id"><div class="ico">🪪</div><h3>Driving Licence</h3><p>Learner’s licence, renewal and address change with slot booking help.</p>
+            <div class="fee"><span>⏱ 10–15 days</span><span>₹ Fee: As notified</span></div>
+            <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="id"><div class="ico">🪪</div><h3>Ration Card Services</h3><p>Add or remove members, change address or apply for a smart card.</p>
+              <div class="fee"><span>⏱ 10–15 days</span><span>₹ Fee: Free</span></div>
+              <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="land"><div class="ico">🏠</div><h3>Patta & Chitta Extract</h3><p>Download land ownership and survey records without visiting the office.</p>
+                <div class="fee"><span>⏱ 1–2 days</span><span>₹ Fee: ₹50</span></div>
+                <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="land"><div class="ico">🏠</div><h3>Encumbrance Certificate</h3><p>Check that a property has no legal dues before buying or lending.</p>
+                  <div class="fee"><span>⏱ 2–4 days</span><span>₹ Fee: ₹100</span></div>
+                  <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="land"><div class="ico">🏠</div><h3>Property Tax Payment</h3><p>Pay municipal property tax and download an instant receipt.</p>
+                    <div class="fee"><span>⏱ Instant</span><span>₹ Fee: Tax + ₹0 fee</span></div>
+                    <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="edu"><div class="ico">🎓</div><h3>Scholarship Applications</h3><p>Find and apply for state and central scholarships you qualify for.</p>
+                      <div class="fee"><span>⏱ Varies</span><span>₹ Fee: Free</span></div>
+                      <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="edu"><div class="ico">🎓</div><h3>Student Welfare Schemes</h3><p>Free bus pass, laptop and fee reimbursement scheme enrolment.</p>
+                        <div class="fee"><span>⏱ Varies</span><span>₹ Fee: Free</span></div>
+                        <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="health"><div class="ico">🩺</div><h3>Health Insurance Enrolment</h3><p>Enrol your family in state health insurance and get a digital card.</p>
+                          <div class="fee"><span>⏱ 3–5 days</span><span>₹ Fee: Free</span></div>
+                          <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="health"><div class="ico">🩺</div><h3>Pension Schemes</h3><p>Old-age, widow and differently-abled pension applications.</p>
+                            <div class="fee"><span>⏱ 15–30 days</span><span>₹ Fee: Free</span></div>
+                            <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="util"><div class="ico">💡</div><h3>Electricity Bill Payment</h3><p>Pay your TNEB bill with UPI, card or net banking.</p>
+                              <div class="fee"><span>⏱ Instant</span><span>₹ Fee: ₹0</span></div>
+                              <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="util"><div class="ico">💧</div><h3>Water & Sewage Bills</h3><p>Pay water charges and download receipts for your records.</p>
+                                <div class="fee"><span>⏱ Instant</span><span>₹ Fee: ₹0</span></div>
+                                <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="util"><div class="ico">🔥</div><h3>LPG Cylinder Booking</h3><p>Book a refill, check your subsidy status and track delivery to your door.</p>
+                                  <div class="fee"><span>⏱ Same day</span><span>₹ Fee: ₹0</span></div>
+                                  <a href="./404.html" class="btn btn-p">Apply now</a></article><article class="svc" data-cat="util"><div class="ico">🚰</div><h3>New Water Connection</h3><p>Apply for a new domestic water connection or request a change of name.</p>
+                                    <div class="fee"><span>⏱ 7–10 days</span><span>₹ Fee: As notified</span></div>
+                                    <a href="./404.html" class="btn btn-p">Apply now</a></article></div></div></section>
+<section class="alt"><div class="wrap center"><div class="rv"><span class="tag">HOW IT WORKS</span><h2 class="title">Four simple steps to get it done</h2></div>
+<div class="steps"><div class="step rv"><em>01</em><h3>Choose</h3><p>Select the service you need.</p></div><div class="step rv"><em>02</em><h3>Upload</h3><p>Submit documents securely.</p></div><div class="step rv"><em>03</em><h3>Verify</h3><p>We check and forward to the department.</p></div><div class="step rv"><em>04</em><h3>Receive</h3><p>Download or collect nearby.</p></div></div></div></section>
+<section><div class="wrap"><div class="center rv"><span class="tag">FAQ</span><h2 class="title">Before you apply</h2></div><div class="acc"><details><summary>Which documents do I usually need?</summary><p>Most applications need an Aadhaar card, a recent passport-size photo and an address proof. Each service page lists any extras, such as a school certificate or sale deed.</p></details><details><summary>Can I apply on behalf of a family member?</summary><p>Yes. Upload their documents with their consent and use your mobile number for OTP. Some services need the applicant’s own biometric verification.</p></details><details><summary>What if my application is rejected?</summary><p>We tell you the reason, help you correct the documents and resubmit at no extra service fee.</p></details><details><summary>Are the fees shown final?</summary><p>Government fees are set by the department and can change. The amount shown on your payment screen is final before you pay.</p></details></div></div></section><section class="band"><div class="wrap rv"><h2 class="title">Skip the queue. Save your time.</h2><p class="sub">Join over a million citizens who have moved their paperwork online. Create your free account in under two minutes.</p><a href="login.html" class="btn btn-p">Create Free Account</a></div></section>
+<footer>
+<div class="wrap fg">
+  <div><img class="flogo" src="stackly-logo.webp" alt="Stackly"><p>We simplify access to government services through guided, secure and paperless support — helping every citizen save time and get verified results with confidence.</p>
+    <div class="soc">
+      <a href="./404.html" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2H21.5l-7.19 8.22L22.75 22h-6.62l-5.18-6.77L4.99 22H1.73l7.69-8.8L1.25 2h6.79l4.68 6.19L18.244 2Zm-1.16 18h1.83L7.01 3.9H5.05L17.084 20Z"/></svg></a>
+      <a href="./404.html" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5Zm5.2-3.2a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg></a>
+      <a href="./404.html" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.83v1.54h.06c.53-.95 1.84-1.95 3.78-1.95 4.04 0 4.78 2.55 4.78 5.88V21h-4v-5.1c0-1.22-.02-2.78-1.77-2.78-1.77 0-2.04 1.33-2.04 2.7V21h-4V9.75Z"/></svg></a>
+      <a href="./404.html" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2C2 8.78 2 12 2 12s0 3.22.4 4.8a2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77C22 15.22 22 12 22 12s0-3.22-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a>
+    </div></div>
+  <div><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="blogs.html">Blogs</a></li><li><a href="contact.html">Contact</a></li><li><a href="track.html">Track Application</a></li></ul></div>
+  <div><h4>Services</h4><ul><li><a href="./404.html">Certificates</a></li><li><a href="./404.html">Identity &amp; Licences</a></li><li><a href="./404.html">Land &amp; Property</a></li><li><a href="./404.html">Scholarships</a></li><li><a href="./404.html ">Bill Payments</a></li></ul></div>
+  <div><h4>Address</h4><p>MMR Complex, Periyakollappatty, Chinna Thirupathi, Salem, Tamil Nadu 636008</p></div>
+</div>
+<div class="copy"><span>© 2026 Stackly Government Services. All rights reserved.</span><nav class="legal" aria-label="Legal"><a href="404.html">Privacy</a><a href="404.html">Terms &amp; Conditions</a></nav></div>
+</footer>
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+// hero headline
+const h1=$("#h1");
+if(h1){"Government Services, Simplified for Every Citizen".split(" ").forEach((w,i)=>{const s=document.createElement("span");s.className="w";s.style.animationDelay=(i*.12)+"s";s.textContent=w;h1.appendChild(s)})}
+// marquee
+const mq=$("#mq");
+if(mq){const it=["Birth Certificate","Income Certificate","Patta & Chitta","Voter ID","Driving Licence","Ration Card","Property Tax","Scholarships","Pension Schemes","Bill Payments"];mq.innerHTML=[...it,...it].map(t=>"<span>"+t+"</span>").join("")}
+// mobile menu
+const menu=$("#menu"),burger=$("#burger");
+const setMenu=o=>{menu.classList.toggle("open",o);burger.setAttribute("aria-expanded",o);document.body.style.overflow=o?"hidden":""};
+burger.onclick=()=>setMenu(true);$("#exit").onclick=()=>setMenu(false);
+$$("a",menu).forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+matchMedia("(min-width:961px)").addEventListener("change",e=>{if(e.matches)setMenu(false)});
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}}),{threshold:.12});
+$$(".rv,.rl,.rr").forEach((el,i)=>{el.style.transitionDelay=((i%3)*.1)+"s";io.observe(el)});
+// counters
+const co=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,n=+el.dataset.n;let c=0;const st=n/60;const t=setInterval(()=>{c+=st;if(c>=n){c=n;clearInterval(t)}el.textContent=n>=1000?(c/1000000).toFixed(1)+"M+":Math.floor(c)+(n==150?"+":"")},25);co.unobserve(el)}),{threshold:.5});
+$$("[data-n]").forEach(el=>co.observe(el));
+// image fallback
+$$("img").forEach(i=>i.onerror=()=>{if(!i.src.includes("stackly")){i.style.background="linear-gradient(135deg,#0F5C4D,#F28C28)";i.removeAttribute("src")}});
+// filters (services + blogs)
+const chips=$$("[data-filter]");
+if(chips.length){const items=$$("[data-cat]"),cnt=$("#count");
+const apply=k=>{let n=0;items.forEach(el=>{const show=k==="all"||el.dataset.cat===k;el.classList.toggle("hide",!show);if(show){n++;el.classList.add("show")}});if(cnt)cnt.textContent="Showing "+n+" service"+(n===1?"":"s")};
+chips.forEach(c=>c.onclick=()=>{chips.forEach(x=>x.classList.remove("on"));c.classList.add("on");apply(c.dataset.filter)});apply("all")}
+// blog read more
+$$("[data-toggle]").forEach(b=>b.onclick=()=>{const c=b.closest(".card");c.classList.toggle("open-post");b.textContent=c.classList.contains("open-post")?"Show less ←":"Read more →"});
+// newsletter
+const nl=$(".nl");if(nl)nl.onsubmit=e=>{e.preventDefault();$("#nlmsg").classList.remove("hide");nl.reset()};
+const say=(el,t,ok)=>{el.textContent=t;el.className="msg "+(ok?"ok":"err");el.setAttribute("role",ok?"status":"alert")};
+const phone=v=>/^[6-9]\d{9}$/.test(v);
+// contact form
+const cf=$("#cf");
+if(cf)cf.onsubmit=e=>{e.preventDefault();const m=$("#cmsg");
+ if(!$("#n").value.trim()||!$("#m").value.trim())return say(m,"Please enter your name and message.");
+ if(!phone($("#p").value))return say(m,"Enter a valid 10-digit mobile number.");
+ if(!$("#e").checkValidity())return say(m,"Enter a valid email address.");
+ say(m,"Thank you, "+$("#n").value.trim().split(" ")[0]+". We will contact you within one working day.",true);cf.reset()};
+// tracker (demo data)
+const tf=$("#tf");
+if(tf){const D={"STK-2026-10458":{n:"Income Certificate",s:3,st:"In progress",d:"22 Oct 2026",a:"12 Oct 2026",o:"Salem Taluk Office",note:"Your file is with the Tahsildar office for approval. No action is needed from you."},
+"STK-2026-10211":{n:"Patta & Chitta Extract",s:5,st:"Completed",d:"Delivered",a:"03 Oct 2026",o:"Land Records Office",note:"Your document is ready. Log in to download it or collect it from our centre."}};
+const L=["Submitted","Verified","With department","Approved","Delivered"];
+tf.onsubmit=e=>{e.preventDefault();const id=$("#aid").value.trim().toUpperCase(),er=$("#terr"),r=$("#tres");er.classList.add("hide");r.classList.add("hide");
+ if(!phone($("#mob").value)){er.textContent="Enter a valid 10-digit mobile number.";return er.classList.remove("hide")}
+ const x=D[id];if(!x){er.textContent="No application found for that number. Check the number and try again, or contact support.";return er.classList.remove("hide")}
+ $("#tstat").textContent=x.st;$("#tname").textContent=x.n+" · "+id;
+ $("#pipe").innerHTML=L.map((t,i)=>'<li class="'+(i<x.s-(x.s===5?0:1)?"done":"")+(i===x.s-1&&x.s<5?" now":"")+'">'+t+"</li>").join("");
+ $("#kv").innerHTML=[["Applied on",x.a],["Expected by",x.d],["Handled by",x.o]].map(k=>"<div><small>"+k[0]+"</small>"+k[1]+"</div>").join("");
+ $("#tnote").textContent=x.note;r.classList.remove("hide");r.scrollIntoView({behavior:"smooth",block:"nearest"})}}
+// login / register
+const lf=$("#lf");
+if(lf){let mode="login";const tabs=$$(".tabs button");
+ tabs.forEach(b=>b.onclick=()=>{mode=b.dataset.mode;tabs.forEach(x=>x.classList.toggle("on",x===b));const r=mode==="register";
+  $("#nm").classList.toggle("hide",!r);$("#ft").textContent=r?"Create your free account":"Login to your account";$("#lb").textContent=r?"Create account":"Login";$("#lp").autocomplete=r?"new-password":"current-password";$("#lmsg").classList.add("hide")});
+ lf.onsubmit=e=>{e.preventDefault();const m=$("#lmsg");
+  if(mode==="register"&&!$("#ln").value.trim())return say(m,"Enter your full name.");
+  if(!phone($("#lm").value))return say(m,"Enter a valid 10-digit mobile number.");
+  if($("#lp").value.length<6)return say(m,"Password must be at least 6 characters.");
+  say(m,mode==="register"?"Account created. You can now log in.":"Login successful (demo). Redirecting to your dashboard…",true)}}
+})();
+
+
+// auto reveal: fade/slide every container and text block into view, then hand control back to its own hover transitions
+(function(){
+const sel='section:not(.auth) .tag,section:not(.auth) h2,section:not(.auth) .title,section:not(.auth) .sub,section:not(.auth)>.wrap>p,.hero .wrap>div>p,.hero .btns,.hero .tag,.card,.svc,.val,.info,.person,.step,.t,.panel,.feat,.map,.news,.cbox,.acc details,.tl>div,.chips,.chip,.imgs img,.list li,.stats .wrap>div,.auth .side>*,.auth .form>*,footer .fg>div,.copy,.trk>*';
+const skip=e=>e.closest('header,.menu,.marq,.phero')||e.classList.contains('rv')||e.classList.contains('rl')||e.classList.contains('rr')||e.closest('.rv,.rl,.rr');
+const els=[...document.querySelectorAll(sel)].filter(e=>!skip(e));
+const seen=new Map();
+const o=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target;o.unobserve(el);
+ el.classList.add('show');
+ setTimeout(()=>{el.classList.remove('rv','show');el.style.transitionDelay='';el.style.removeProperty('transition-delay')},1500)}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+els.forEach(el=>{const p=el.parentElement,n=seen.get(p)||0;seen.set(p,n+1);
+ el.classList.add('rv');el.style.transitionDelay=Math.min(n,5)*.08+'s';o.observe(el)});
+})();
+</script>
+</body>
+</html>
